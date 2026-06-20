@@ -1,12 +1,16 @@
-# Basic Todo List
+# Focus Board
 
-A small browser-based todo list app with localStorage persistence.
+A small interactive task board with localStorage persistence.
 
 ## Features
 
 - Add tasks
+- Edit tasks
 - Mark tasks complete
-- Filter all, active, or done tasks
+- Set priority and due dates
+- Search, filter, and sort tasks
+- Track completion progress
+- Toggle light and dark themes
 - Delete individual tasks
 - Clear completed tasks
 - Saves tasks in the browser

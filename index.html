@@ -3,56 +3,114 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Todo List</title>
+    <title>Focus Board</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <main class="app-shell">
-      <section class="todo-panel" aria-labelledby="app-title">
-        <div class="header-row">
+      <section class="workspace" aria-labelledby="app-title">
+        <header class="topbar">
           <div>
-            <p class="eyebrow">Today</p>
-            <h1 id="app-title">Todo List</h1>
+            <p class="eyebrow">Task workspace</p>
+            <h1 id="app-title">Focus Board</h1>
           </div>
-          <div class="counter" aria-live="polite">
-            <span id="remaining-count">0</span>
-            <span>left</span>
-          </div>
-        </div>
+          <button class="icon-button" id="theme-toggle" type="button" aria-label="Toggle theme">D</button>
+        </header>
 
-        <form class="todo-form" id="todo-form">
-          <label class="sr-only" for="todo-input">New task</label>
-          <input id="todo-input" name="todo" type="text" placeholder="Add a task" autocomplete="off" maxlength="100" required>
-          <button type="submit">Add</button>
+        <section class="hero-grid" aria-label="Task overview">
+          <div class="progress-panel">
+            <div class="progress-ring" id="progress-ring">
+              <span id="progress-percent">0%</span>
+            </div>
+            <div>
+              <p class="metric-label">Progress</p>
+              <strong id="progress-copy">No tasks yet</strong>
+            </div>
+          </div>
+
+          <div class="metrics">
+            <div class="metric">
+              <span id="total-count">0</span>
+              <small>Total</small>
+            </div>
+            <div class="metric">
+              <span id="active-count">0</span>
+              <small>Active</small>
+            </div>
+            <div class="metric">
+              <span id="done-count">0</span>
+              <small>Done</small>
+            </div>
+          </div>
+        </section>
+
+        <form class="task-form" id="task-form">
+          <label class="sr-only" for="task-input">Task</label>
+          <input id="task-input" name="task" type="text" placeholder="Add a task" autocomplete="off" maxlength="100" required>
+
+          <label class="sr-only" for="priority-input">Priority</label>
+          <select id="priority-input" name="priority">
+            <option value="normal">Normal</option>
+            <option value="high">High</option>
+            <option value="low">Low</option>
+          </select>
+
+          <label class="sr-only" for="due-input">Due date</label>
+          <input id="due-input" name="due" type="date">
+
+          <button id="submit-button" type="submit">Add</button>
+          <button class="ghost-button" id="cancel-edit" type="button" hidden>Cancel</button>
         </form>
 
-        <div class="toolbar" aria-label="Todo filters">
-          <button class="filter-button active" type="button" data-filter="all">All</button>
-          <button class="filter-button" type="button" data-filter="active">Active</button>
-          <button class="filter-button" type="button" data-filter="completed">Done</button>
-        </div>
+        <section class="controls" aria-label="Task controls">
+          <label class="sr-only" for="search-input">Search tasks</label>
+          <input id="search-input" type="search" placeholder="Search tasks">
 
-        <ul class="todo-list" id="todo-list" aria-label="Tasks"></ul>
+          <div class="filter-group" aria-label="Task filters">
+            <button class="filter-button active" type="button" data-filter="all">All</button>
+            <button class="filter-button" type="button" data-filter="active">Active</button>
+            <button class="filter-button" type="button" data-filter="completed">Done</button>
+          </div>
+
+          <label class="sr-only" for="sort-input">Sort tasks</label>
+          <select id="sort-input">
+            <option value="newest">Newest</option>
+            <option value="due">Due date</option>
+            <option value="priority">Priority</option>
+          </select>
+        </section>
+
+        <ul class="task-list" id="task-list" aria-label="Tasks"></ul>
 
         <div class="empty-state" id="empty-state">
-          <strong>No tasks here.</strong>
-          <span>Add one above or change the filter.</span>
+          <strong>No tasks found.</strong>
+          <span>Change the filter or add something new.</span>
         </div>
 
-        <div class="footer-row">
-          <button class="text-button" id="clear-completed" type="button">Clear completed</button>
-        </div>
+        <footer class="footer-row">
+          <button class="text-button" id="seed-tasks" type="button">Load sample tasks</button>
+          <button class="text-button danger" id="clear-completed" type="button">Clear completed</button>
+        </footer>
       </section>
     </main>
 
-    <template id="todo-template">
-      <li class="todo-item">
+    <template id="task-template">
+      <li class="task-item">
         <label class="check-wrap">
-          <input class="todo-check" type="checkbox">
+          <input class="task-check" type="checkbox">
           <span class="custom-check" aria-hidden="true"></span>
-          <span class="todo-title"></span>
         </label>
-        <button class="delete-button" type="button" aria-label="Delete task">Delete</button>
+        <div class="task-content">
+          <strong class="task-title"></strong>
+          <div class="task-meta">
+            <span class="priority-badge"></span>
+            <span class="due-badge"></span>
+          </div>
+        </div>
+        <div class="task-actions">
+          <button class="small-button edit-button" type="button">Edit</button>
+          <button class="small-button delete-button" type="button">Delete</button>
+        </div>
       </li>
     </template>
 
