@@ -21,4 +21,4 @@ Open `index.html` in a browser, or serve the folder with any static web server.
 
 ## Deploy
 
-This repo includes a GitHub Pages workflow. Push the `main` branch to GitHub and the site will deploy through GitHub Actions.
+This site is deployed from the `gh-pages` branch.
