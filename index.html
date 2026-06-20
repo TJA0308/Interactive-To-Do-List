@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="todo-panel" aria-labelledby="app-title">
+        <div class="header-row">
+          <div>
+            <p class="eyebrow">Today</p>
+            <h1 id="app-title">Todo List</h1>
+          </div>
+          <div class="counter" aria-live="polite">
+            <span id="remaining-count">0</span>
+            <span>left</span>
+          </div>
+        </div>
+
+        <form class="todo-form" id="todo-form">
+          <label class="sr-only" for="todo-input">New task</label>
+          <input id="todo-input" name="todo" type="text" placeholder="Add a task" autocomplete="off" maxlength="100" required>
+          <button type="submit">Add</button>
+        </form>
+
+        <div class="toolbar" aria-label="Todo filters">
+          <button class="filter-button active" type="button" data-filter="all">All</button>
+          <button class="filter-button" type="button" data-filter="active">Active</button>
+          <button class="filter-button" type="button" data-filter="completed">Done</button>
+        </div>
+
+        <ul class="todo-list" id="todo-list" aria-label="Tasks"></ul>
+
+        <div class="empty-state" id="empty-state">
+          <strong>No tasks here.</strong>
+          <span>Add one above or change the filter.</span>
+        </div>
+
+        <div class="footer-row">
+          <button class="text-button" id="clear-completed" type="button">Clear completed</button>
+        </div>
+      </section>
+    </main>
+
+    <template id="todo-template">
+      <li class="todo-item">
+        <label class="check-wrap">
+          <input class="todo-check" type="checkbox">
+          <span class="custom-check" aria-hidden="true"></span>
+          <span class="todo-title"></span>
+        </label>
+        <button class="delete-button" type="button" aria-label="Delete task">Delete</button>
+      </li>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
